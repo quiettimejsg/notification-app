@@ -92,6 +92,7 @@ const LoginPage = ({ onLoginSuccess }) => {
                 id="username"
                 name="username"
                 type="text"
+                autoComplete="username"
                 value={formData.username}
                 onChange={handleInputChange}
                 placeholder={t('login.usernameRequired')}
@@ -110,6 +111,7 @@ const LoginPage = ({ onLoginSuccess }) => {
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="current-password"
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder={t('login.passwordRequired')}
