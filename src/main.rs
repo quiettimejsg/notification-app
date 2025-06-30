@@ -6,7 +6,7 @@ mod utils;
 use axum::{
     http::Method,
     middleware as axum_middleware,
-    routing::{get, post},
+    routing::{delete, get, post, put},
     Router,
 };
 use dotenv::dotenv;
@@ -67,6 +67,14 @@ async fn main() -> anyhow::Result<()> {
         .route(
             "/api/auth/me",
             get(get_current_user).layer(axum_middleware::from_fn(auth_middleware)),
+        )
+        // 公开通知路由
+        .route("/api/notifications", get(get_notifications))
+        .route("/api/notifications/:id", get(get_notification))
+        // 管理员通知路由
+        .route(
+            "/api/admin/notifications",
+            post(create_notification).layer(axum_middleware::from_fn(auth_middleware)),
         )
         // 添加CORS和状态
         .layer(
