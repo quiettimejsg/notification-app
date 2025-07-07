@@ -12,6 +12,9 @@ pub struct User {
     pub is_admin: bool,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
+    pub totp_secret: Option<String>,
+    pub totp_enabled: bool,
+    pub backup_codes: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -40,6 +43,7 @@ pub struct UserResponse {
     pub is_admin: bool,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
+    pub totp_enabled: bool,
 }
 
 impl From<User> for UserResponse {
@@ -50,6 +54,7 @@ impl From<User> for UserResponse {
             is_admin: user.is_admin,
             created_at: user.created_at,
             updated_at: user.updated_at,
+            totp_enabled: user.totp_enabled,
         }
     }
 }
