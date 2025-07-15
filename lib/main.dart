@@ -254,7 +254,7 @@ class _NotificationListPageState extends State<NotificationListPage> {
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundColor: _getPriorityColor(notification['priority']),
-                          child: Icon(
+                          child: const Icon(
                             Icons.notifications,
                             color: Colors.white,
                           ),

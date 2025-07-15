@@ -108,7 +108,7 @@ pub async fn disable_2fa(
     
     let user = user.ok_or(StatusCode::NOT_FOUND)?;
     
-    if user.totp_enabled != 1 {
+    if !user.totp_enabled {
         return Ok(Json(json!({
             "success": false,
             "message": "2FA未启用"
@@ -158,7 +158,7 @@ pub async fn get_2fa_status(
     let user = user.ok_or(StatusCode::NOT_FOUND)?;
     
     Ok(Json(json!({
-        "enabled": user.totp_enabled == 1
+        "enabled": user.totp_enabled
     })))
 }
 
